@@ -1,0 +1,321 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * CAMPUS NEWS design system.
+ * Editorial + architectural glass. Small radii only (4-12px).
+ */
+
+@theme inline {
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-2xl: 12px;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-alt: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-deep: var(--deep);
+  --color-ink: var(--ink);
+  --color-steel: var(--steel);
+  --color-mist: var(--mist);
+  --color-urgent: var(--urgent);
+  --color-live: var(--live);
+}
+
+:root {
+  --radius: 6px;
+
+  --background: oklch(0.9608 0.0119 223.52); /* #EAF4F8 */
+  --foreground: oklch(0.3065 0.0504 244); /* #173247 */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.3065 0.0504 244);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.3065 0.0504 244);
+
+  --primary: oklch(0.3269 0.0512 239.26); /* #19384C */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.9332 0.0195 225.73); /* #DCECF3 */
+  --secondary-foreground: oklch(0.3269 0.0512 239.26);
+  --muted: oklch(0.9332 0.0195 225.73);
+  --muted-foreground: oklch(0.5854 0.0261 232.18); /* #6D7F89 */
+  --accent: oklch(0.6183 0.0649 236.56); /* #5F8CA8 */
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.55 0.19 25);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.6183 0.0649 236.56 / 22%);
+  --input: oklch(0.6183 0.0649 236.56 / 30%);
+  --ring: oklch(0.4357 0.0561 243.1);
+
+  --deep: oklch(0.4357 0.0561 243.1); /* #35556E */
+  --ink: oklch(0.2503 0.04 240.71);
+  --steel: oklch(0.6183 0.0649 236.56);
+  --mist: oklch(0.9332 0.0195 225.73);
+  --urgent: oklch(0.58 0.17 28);
+  --live: oklch(0.65 0.15 150);
+
+  --glass: rgb(255 255 255 / 0.42);
+  --glass-strong: rgb(255 255 255 / 0.66);
+  --glass-border: rgb(255 255 255 / 0.55);
+  --shadow-glass: 0 18px 50px -24px oklch(0.3269 0.0512 239.26 / 0.35);
+  --shadow-panel: 0 10px 30px -18px oklch(0.3269 0.0512 239.26 / 0.4);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    /*
+      Do NOT set height:100% here — it interacts badly with the virtual
+      keyboard on iOS (causes the page to shrink when keyboard opens).
+      Let the content define the height naturally.
+    */
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    /*
+      min-height: 100dvh uses the dynamic viewport unit that accounts for
+      the iOS Safari address bar and avoids the viewport collapse bug.
+      Do NOT use min-height: 100svh — "small" viewport doesn't update when
+      keyboard opens, causing layout jank.
+    */
+    min-height: 100dvh;
+  }
+
+  /* Fix input fields causing viewport collapse on mobile browsers */
+  input,
+  textarea,
+  select {
+    /*
+      iOS Safari zooms the viewport when an input's font-size < 16px.
+      We force 16px minimum here with !important so Tailwind's text-sm (14px)
+      or label-sys classes cannot override it.
+      This also fixes the "zoomed out after blurring input" bug on Android.
+    */
+    font-size: 16px !important;
+    /* Prevent any inherited transform/scale from messing with the keyboard area */
+    transform: none;
+  }
+
+  /*
+    On very small screens we want the text inside inputs to still look
+    proportional — 16px is non-negotiable for preventing iOS zoom.
+  */
+  @media (min-width: 640px) {
+    input,
+    textarea,
+    select {
+      font-size: max(16px, 1em) !important;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+  }
+
+  ::selection {
+    background: var(--deep);
+    color: white;
+  }
+}
+
+/* ---------- Glass surfaces ---------- */
+
+@utility glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  /* Reduced from blur(22px) — high blur on many overlapping elements kills GPU */
+  backdrop-filter: blur(12px) saturate(140%);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility glass-strong {
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility glass-dark {
+  background: oklch(0.2503 0.04 240.71 / 0.55);
+  border: 1px solid oklch(1 0 0 / 0.18);
+  backdrop-filter: blur(14px) saturate(130%);
+  color: white;
+}
+
+@utility glass-sheen {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -60% -20%;
+    background: linear-gradient(
+      100deg,
+      transparent 40%,
+      rgb(255 255 255 / 0.35) 50%,
+      transparent 60%
+    );
+    transform: translateX(-120%);
+    /* Slowed down — was animating every 9s which means constant repaints */
+    animation: sheen 14s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes sheen {
+  0%,
+  70% {
+    transform: translateX(-120%);
+  }
+  85%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* ---------- Editorial type ---------- */
+
+@utility display-hero {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.93;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  /* Smaller range: fits 3 lines inside 100svh on mobile without overflow */
+  font-size: clamp(2.2rem, 8.5vw, 7.5rem);
+  padding-bottom: 0.06em;
+}
+
+@utility display-section {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6.5vw, 5.5rem);
+}
+
+@utility label-sys {
+  font-family: var(--font-alt);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    oklch(0.6183 0.0649 236.56 / 0.5),
+    oklch(0.6183 0.0649 236.56 / 0.05)
+  );
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, oklch(0.6183 0.0649 236.56 / 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.6183 0.0649 236.56 / 0.12) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* ---------- Motion helpers ---------- */
+
+@utility reveal-init {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+@keyframes pulse-live {
+  0%,
+  100% { opacity: 1; }
+  50%  { opacity: 0.4; }
+}
+
+@utility dot-live {
+  animation: pulse-live 2.4s ease-in-out infinite;
+  /* Removed scale() — forces compositor off the fast path on low-end GPUs */
+}
+
+/* icon-anim: ONLY transition opacity — not transform/stroke-dashoffset.
+   The original rule put 3 transitions on EVERY path/circle/rect/line across
+   ALL icons, causing hundreds of transition watchers firing each GSAP tick,
+   which is the main source of style recalculation jank. */
+.icon-anim {
+  transition: opacity 0.3s ease;
+}
+
+/* Hover lift: only on the SVG root, not every child */
+.group:hover .icon-anim,
+.group\/btn:hover .icon-anim {
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Hide scrollbar utility */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Hero scroll-dot animation */
+@keyframes hero-dot {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50%       { transform: translateY(6px); opacity: 0.15; }
+}
+
+/* Hide native cursor only where the custom cursor is active */
+body[data-campus-cursor="on"],
+body[data-campus-cursor="on"] * {
+  cursor: none !important;
+}

@@ -1,0 +1,17 @@
+export { IconBase, type IconProps } from "./_base";
+export { CampusEventsIcon } from "./CampusEventsIcon";
+export { CampusNewsIcon } from "./CampusNewsIcon";
+export { AnnouncementIcon } from "./AnnouncementIcon";
+export { NotificationIcon } from "./NotificationIcon";
+export { RegistrationIcon } from "./RegistrationIcon";
+export { AttendanceIcon } from "./AttendanceIcon";
+export { ScheduleIcon } from "./ScheduleIcon";
+export { StudentIcon } from "./StudentIcon";
+export { OrganizerIcon } from "./OrganizerIcon";
+export { CampusIcon } from "./CampusIcon";
+export { SearchIcon } from "./SearchIcon";
+export { ArrowIcon } from "./ArrowIcon";
+export { NewsArticleIcon } from "./NewsArticleIcon";
+export { LocationIcon } from "./LocationIcon";
+export { CalendarIcon } from "./CalendarIcon";
+export { SecurityIcon } from "./SecurityIcon";
