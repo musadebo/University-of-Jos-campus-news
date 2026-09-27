@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useAuth } from "@/hooks/useAuth";
 import { SectionLabel } from "./primitives";
+import { UniJosLogo } from "./UniJosLogo";
 
 export function CampusFooter() {
   const { user, hasRole } = useAuth();
@@ -18,11 +19,14 @@ export function CampusFooter() {
       />
 
       <div className="relative mx-auto max-w-[1500px] px-5 py-16 sm:px-8">
-        <h2 className="display-section max-w-3xl text-white">
-          Campus
-          <br />
-          Events.
-        </h2>
+        <div className="flex items-center gap-3">
+          <UniJosLogo size={40} className="text-white/80" />
+          <h2 className="display-section max-w-3xl text-white">
+            Campus
+            <br />
+            Events.
+          </h2>
+        </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Platform */}
@@ -129,7 +133,7 @@ export function CampusFooter() {
         </div>
 
         <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-white/15 pt-6">
-          <SectionLabel className="text-white/50">CAMPUS EVENTS / 2026</SectionLabel>
+          <SectionLabel className="text-white/50">UNIVERSITY OF JOS · CAMPUS EVENTS</SectionLabel>
           <SectionLabel className="text-white/50">POWERED FOR UNIVERSITY OF JOS</SectionLabel>
         </div>
       </div>

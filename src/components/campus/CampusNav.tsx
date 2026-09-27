@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { listNotifications } from "@/services/campus";
 import { ArrowIcon, NotificationIcon, SearchIcon, StudentIcon } from "@/components/icons";
 import { SectionLabel } from "./primitives";
+import { UniJosLogo } from "./UniJosLogo";
 
 const PUBLIC_LINKS = [
   { to: "/events", label: "EVENTS" },
@@ -99,11 +100,12 @@ export function CampusNav() {
             : "border-white/40 bg-white/32 px-4 py-4 backdrop-blur-[18px] sm:px-6",
         )}
       >
-        <Link to="/" className="group flex items-baseline gap-2" data-cursor="link">
+        <Link to="/" className="group flex items-center gap-2" data-cursor="link">
+          <UniJosLogo size={28} className="text-ink flex-shrink-0" />
           <span className="font-display text-[0.95rem] font-bold uppercase tracking-[-0.02em] text-ink">
             Campus Events
           </span>
-          <span className="label-sys hidden text-[0.5625rem] text-steel sm:inline">/ 2026</span>
+          <span className="label-sys hidden text-[0.5625rem] text-steel sm:inline">/ UNIJOS</span>
         </Link>
 
         <div className="hidden items-center gap-1 lg:flex">
